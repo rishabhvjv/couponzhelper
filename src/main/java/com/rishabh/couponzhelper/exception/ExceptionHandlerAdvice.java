@@ -17,8 +17,8 @@ public class ExceptionHandlerAdvice {
 			final HttpServletRequest request) {
 		
 		CustomExceptionResponse error = new CustomExceptionResponse();
-		error.setErrorCode("500");
-		error.setErrorMessage("Error- "+exception.getMessage());
+		error.setErrorCode("E01");
+		error.setErrorMessage("Hey, Something's not right- "+exception.getMessage());
 		error.setRequestPath(request.getRequestURI());
 		exception.printStackTrace();
 		return error;

@@ -122,6 +122,13 @@ public class CouponEntity {
 	public void setImageLink(String imageLink) {
 		this.imageLink = imageLink;
 	}
-	
 
+	public long getCid() {
+		return cid;
+	}
+
+	public void setCid(long cid) {
+		this.cid = cid;
+	}
+	
 }

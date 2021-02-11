@@ -13,22 +13,28 @@ import com.rishabh.couponzhelper.model.CouponData;
 import com.rishabh.couponzhelper.model.GetCouponResponse;
 
 @RestController
-@RequestMapping("/couponz")
+@RequestMapping("/coupon")
 public class CouponController {
 	
 	@Autowired
 	CouponService couponService;
 
-	@GetMapping(path = "/fetch-all-coupon/v1", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path = "/fetch-all/v1", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<GetCouponResponse> getAllCouponData() {
 		GetCouponResponse response = couponService.fetchAllCoupons();
 		return ResponseEntity.ok(response);
 	}
 	
 
-	@PostMapping(path = "/add-coupon/v1", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<GetCouponResponse> insertData(@RequestBody CouponData request) {
+	@PostMapping(path = "/create/v1", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<GetCouponResponse> insertCoupon(@RequestBody CouponData request) {
 		GetCouponResponse response = couponService.addNewCoupon(request);
+		return ResponseEntity.ok(response);
+	}
+	
+	@PostMapping(path = "/redeem/v1", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<GetCouponResponse> redeemCoupon(@RequestBody CouponData request) {
+		GetCouponResponse response = couponService.redeemCoupon(request);
 		return ResponseEntity.ok(response);
 	}
 }
