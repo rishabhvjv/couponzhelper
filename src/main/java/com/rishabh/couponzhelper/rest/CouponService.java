@@ -11,6 +11,7 @@ import com.rishabh.couponzhelper.db.CouponEntity;
 import com.rishabh.couponzhelper.db.CouponRepository;
 import com.rishabh.couponzhelper.model.CouponData;
 import com.rishabh.couponzhelper.model.GetCouponResponse;
+import static com.rishabh.couponzhelper.utils.Constants.*;
 
 @Service
 public class CouponService {
@@ -22,7 +23,7 @@ public class CouponService {
 		GetCouponResponse resp = new GetCouponResponse();
 		List<CouponEntity> cpList = couponRepo.findAll(); 
 		if(cpList == null || cpList.size() == 0) {
-			throw new RuntimeException("No Coupons present in the system");
+			throw new RuntimeException("No Coupons found in the system");
 		}
 		List<CouponData> finalData = new ArrayList<CouponData>();
 		
@@ -35,9 +36,9 @@ public class CouponService {
 			cpn.setImageLink(en.getImageLink());
 			finalData.add(cpn);
 		}
-		resp.setResponseCode("S01");
+		resp.setResponseCode(SUCCESS_01);
 		resp.setResponseMessage("Coupon Data Fetched Successfully");
-		resp.setVersion("v1");
+		resp.setVersion(VERSION_V1);
 		resp.setResponse(finalData);
 		return resp;
 	}
@@ -59,9 +60,9 @@ public class CouponService {
 		List<CouponData> finalData = new ArrayList<CouponData>();
 		finalData.add(request);
 		
-		resp.setResponseCode("S01");
+		resp.setResponseCode(SUCCESS_01);
 		resp.setResponseMessage("Coupon Added Successfully");
-		resp.setVersion("v1");
+		resp.setVersion(VERSION_V1);
 		resp.setResponse(finalData);
 		return resp;
 	}

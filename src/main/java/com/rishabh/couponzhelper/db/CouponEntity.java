@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.rishabh.couponzhelper.model.CouponData;
-
+import static com.rishabh.couponzhelper.utils.Constants.*;
 @Entity
 @Table(name = "coupondetails")
 public class CouponEntity {
@@ -54,8 +54,8 @@ public class CouponEntity {
 		this.expiryDate = request.getExpiryDate();
 		this.imageLink = request.getImageLink();
 		this.createdAt = String.valueOf(Instant.now().getEpochSecond());
-		this.createdBy = "BACKEND";
-		this.status = "a";
+		this.createdBy = CREATED_BY;
+		this.status = STATUS_ACTIVE;
 		
 	}
 
