@@ -3,6 +3,7 @@ package com.rishabh.couponzhelper.rest;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.platform.commons.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +37,30 @@ public class CouponService {
 		}
 		resp.setResponseCode("S01");
 		resp.setResponseMessage("Coupon Data Fetched Successfully");
+		resp.setVersion("v1");
+		resp.setResponse(finalData);
+		return resp;
+	}
+
+	public GetCouponResponse addNewCoupon(CouponData request) {
+		if(request == null || StringUtils.isBlank(request.getCouponCode())
+				|| StringUtils.isBlank(request.getCouponName())) {
+			throw new RuntimeException("Mandatory request parameters are missing");
+		}
+		if(request.getAmount() < 0) {
+			throw new RuntimeException("Negative value of coupon amount is Not allowed");
+		}
+		
+		GetCouponResponse resp = new GetCouponResponse();
+		
+		CouponEntity en = new CouponEntity(request);
+		couponRepo.save(en);
+		
+		List<CouponData> finalData = new ArrayList<CouponData>();
+		finalData.add(request);
+		
+		resp.setResponseCode("S01");
+		resp.setResponseMessage("Coupon Added Successfully");
 		resp.setVersion("v1");
 		resp.setResponse(finalData);
 		return resp;

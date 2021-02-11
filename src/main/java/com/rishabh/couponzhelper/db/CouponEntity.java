@@ -1,11 +1,15 @@
 package com.rishabh.couponzhelper.db;
 
+import java.time.Instant;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.rishabh.couponzhelper.model.CouponData;
 
 @Entity
 @Table(name = "coupondetails")
@@ -41,6 +45,18 @@ public class CouponEntity {
 
 	public CouponEntity() {
 		super();
+	}
+
+	public CouponEntity(CouponData request) {
+		this.name = request.getCouponName();
+		this.couponCode = request.getCouponCode();
+		this.amount = request.getAmount();
+		this.expiryDate = request.getExpiryDate();
+		this.imageLink = request.getImageLink();
+		this.createdAt = String.valueOf(Instant.now().getEpochSecond());
+		this.createdBy = "BACKEND";
+		this.status = "a";
+		
 	}
 
 	public String getName() {
