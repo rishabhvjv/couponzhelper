@@ -22,10 +22,10 @@ public class CouponEntity {
 	private String couponCode;
 	
 	@Column(name = "amount")
-	private long amount;
+	private double amount;
 	
 	@Column(name = "image_link")
-	private String image_link;
+	private String imageLink;
 	
 	@Column(name = "expiry_date")
 	private String expiryDate;
@@ -59,20 +59,12 @@ public class CouponEntity {
 		this.couponCode = couponCode;
 	}
 
-	public long getAmount() {
+	public double getAmount() {
 		return amount;
 	}
 
-	public void setAmount(long amount) {
+	public void setAmount(double amount) {
 		this.amount = amount;
-	}
-
-	public String getImage_link() {
-		return image_link;
-	}
-
-	public void setImage_link(String image_link) {
-		this.image_link = image_link;
 	}
 
 	public String getExpiryDate() {
@@ -106,5 +98,14 @@ public class CouponEntity {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	public String getImageLink() {
+		return imageLink;
+	}
+
+	public void setImageLink(String imageLink) {
+		this.imageLink = imageLink;
+	}
+	
 
 }
